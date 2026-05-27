@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="container page">
+<h1>Collections</h1>
+<div class="grid-3">
+{% for c in collections %}<a class="card" href="{{ url_for('web.collection_detail', slug=c.slug) }}"><h3>{{ c.name }}</h3><p>{{ c.description }}</p></a>{% else %}<p>No collections yet.</p>{% endfor %}
+</div>
+</section>
+{% endblock %}
