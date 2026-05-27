@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paachi Tales</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}"/>
+</head>
+<body>
+  <header class="nav-wrap">
+    <nav class="nav container">
+      <a class="brand" href="{{ url_for('web.home') }}">Paachi Tales</a>
+      <button class="nav-toggle" aria-label="menu">☰</button>
+      <div class="nav-links">
+        <a href="{{ url_for('web.collections') }}">Collections</a>
+        <a href="{{ url_for('web.about') }}">About</a>
+        <a href="{{ url_for('web.contact') }}">Contact</a>
+        <a href="{{ url_for('web.wishlist') }}">Wishlist</a>
+      </div>
+    </nav>
+  </header>
+  <main>{% block content %}{% endblock %}</main>
+  <footer class="footer">© 2026 Paachi Tales</footer>
+  <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+</body>
+</html>

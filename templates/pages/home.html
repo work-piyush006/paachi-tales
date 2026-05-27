@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero">
+  {% if payload.banners|length > 0 or payload.featured_products|length > 0 %}
+  <div class="hero-overlay">
+    <h1>Cinematic Indian Luxury</h1>
+    <p>Modern heirlooms for timeless stories.</p>
+    <a href="{{ url_for('web.collections') }}" class="btn">Explore Collection</a>
+  </div>
+  {% else %}
+  <div class="coming-soon">
+    <h1>Paachi Tales Catalogue Coming Soon ✨</h1>
+    <p>Our signature collections are being curated.</p>
+    <div class="cta-row">
+      <a class="btn" href="https://wa.me">WhatsApp</a>
+      <a class="btn btn-outline" href="https://instagram.com">Instagram</a>
+    </div>
+  </div>
+  {% endif %}
+</section>
+<section class="container grid-3">
+  {% for collection in payload.featured_collections %}
+  <article class="card">
+    <h3>{{ collection.name }}</h3><p>{{ collection.description }}</p>
+  </article>
+  {% endfor %}
+</section>
+{% endblock %}
