@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="container page">
+{% if product %}
+<div class="product-layout">
+  <div>
+    <div class="gallery-main" id="gallery-main"></div>
+    <div class="thumb-row">{% for m in product.product_media %}<button class="thumb" data-type="{{m.media_type}}" data-src="{{m.media_url}}">{{'▶' if m.media_type=='video' else '◼'}}</button>{% endfor %}</div>
+  </div>
+  <div>
+    <h1>{{ product.title or product.name }}</h1><p>{{ product.description }}</p><p>Code: {{ product.product_code }}</p>
+    <div class="card-actions"><button data-share="{{ request.url }}">Share</button><button data-wishlist="{{ product.slug }}">Wishlist</button><a class="btn" target="_blank" href="https://wa.me/?text={{('Hello, I want price for ' ~ (product.title or product.name) ~ ' (' ~ (product.product_code or 'N/A') ~ ')')|urlencode}}">Know Price</a></div>
+  </div>
+</div>
+{% else %}<div class="card">Error 404 — Product not found.</div>{% endif %}
+</section>
+{% endblock %}
