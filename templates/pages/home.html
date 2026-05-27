@@ -1,17 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
 <section class="hero">
-  {% if payload.banners %}
-    {% set b = payload.banners[0] %}
-    <div class="hero-overlay">
-      <h1>{{ b.title or 'Cinematic Indian Luxury' }}</h1>
-      <p>{{ b.subtitle or 'Modern heirlooms for timeless stories.' }}</p>
-      <a class="btn" href="{{ b.cta_url or '/collections' }}">{{ b.cta_label or 'Explore Collection' }}</a>
-    </div>
+  {% if payload.banners|length > 0 or payload.featured_products|length > 0 %}
+  <div class="hero-overlay">
+    <h1>Cinematic Indian Luxury</h1>
+    <p>Modern heirlooms for timeless stories.</p>
+    <a href="{{ url_for('web.collections') }}" class="btn">Explore Collection</a>
+  </div>
   {% else %}
-    <div class="hero-overlay"><h1>Paachi Tales Catalogue Coming Soon ✨</h1><p>Our signature collections are being curated.</p></div>
+  <div class="coming-soon">
+    <h1>Paachi Tales Catalogue Coming Soon ✨</h1>
+    <p>Our signature collections are being curated.</p>
+    <div class="cta-row">
+      <a class="btn" href="https://wa.me">WhatsApp</a>
+      <a class="btn btn-outline" href="https://instagram.com">Instagram</a>
+    </div>
+  </div>
   {% endif %}
 </section>
-<section class="container page"><h2>Featured Collections</h2><div class="grid-3">{% for c in payload.featured_collections %}<a class="card" href="{{ url_for('web.collection_detail', slug=c.slug) }}"><img loading="lazy" src="{{ c.cover_image_url or '/static/media/fallback.webp' }}"><h3>{{c.name}}</h3><p>{{c.description}}</p></a>{% endfor %}</div></section>
-<section class="container page"><h2>Signature Pieces</h2><div class="grid-3">{% for p in payload.featured_products %}<a class="card product-card" href="{{ url_for('web.product_detail', slug=p.slug) }}"><img loading="lazy" src="{{p.thumbnail_url or p.hero_image_url or '/static/media/fallback.webp'}}"><h3>{{p.title or p.name}}</h3></a>{% endfor %}</div></section>
+<section class="container grid-3">
+  {% for collection in payload.featured_collections %}
+  <article class="card">
+    <h3>{{ collection.name }}</h3><p>{{ collection.description }}</p>
+  </article>
+  {% endfor %}
+</section>
 {% endblock %}

@@ -28,10 +28,6 @@ create table if not exists admins (
 create table if not exists catalogues (
     id uuid primary key default gen_random_uuid(),
     name text not null,
-    title text,
-    product_code text unique,
-    category text,
-    thumbnail_url text,
     slug text unique not null,
     description text,
     cover_image_url text,
@@ -41,10 +37,6 @@ create table if not exists products (
     id uuid primary key default gen_random_uuid(),
     catalogue_id uuid references catalogues(id) on delete set null,
     name text not null,
-    title text,
-    product_code text unique,
-    category text,
-    thumbnail_url text,
     slug text unique not null,
     description text,
     price_inr numeric(12,2),
@@ -56,7 +48,6 @@ create table if not exists product_media (
     id uuid primary key default gen_random_uuid(),
     product_id uuid references products(id) on delete cascade,
     media_url text not null,
-    thumb_url text,
     media_type text not null,
     sort_order int default 0
 );

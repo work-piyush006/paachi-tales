@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-<section class="container page"><h1>Your Wishlist</h1><button data-share="{{request.url}}">Share Wishlist</button><div class="grid-3">{% for p in items %}<article class="card product-card"><a href="{{ url_for('web.product_detail', slug=p.slug) }}"><img loading="lazy" src="{{p.thumbnail_url or p.hero_image_url or '/static/media/fallback.webp'}}"></a><h3>{{p.title or p.name}}</h3><div class="card-actions"><button data-wishlist="{{p.slug}}">Remove</button></div></article>{% else %}<div class="card">No saved designs yet.</div>{% endfor %}</div></section>
-<dialog id="login-modal"><p>Please login to save wishlist.</p><a class="btn" href="{{ url_for('web.login') }}">Login with Google</a></dialog>
+<section class="container page">
+  <h1>wishlist</h1>
+  <div class="card">Luxury content for wishlist.</div>
+</section>
 {% endblock %}

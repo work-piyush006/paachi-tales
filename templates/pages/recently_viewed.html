@@ -1,16 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <section class="container page">
-  <h1>Recently Viewed</h1>
-  <div class="grid-3">
-    {% for item in items %}
-      <a class="card product-card" href="{{ url_for('web.product_detail', slug=item.slug) }}">
-        <img loading="lazy" src="{{ item.thumbnail_url or '/static/media/fallback.webp' }}" alt="{{ item.name }}">
-        <h3>{{ item.name }}</h3>
-      </a>
-    {% else %}
-      <div class="card">No recently viewed pieces yet.</div>
-    {% endfor %}
-  </div>
+  <h1>recently viewed</h1>
+  <div class="card">Luxury content for recently viewed.</div>
 </section>
 {% endblock %}
