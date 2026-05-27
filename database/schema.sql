@@ -28,10 +28,6 @@ create table if not exists admins (
 create table if not exists catalogues (
     id uuid primary key default gen_random_uuid(),
     name text not null,
-    title text,
-    product_code text unique,
-    category text,
-    thumbnail_url text,
     slug text unique not null,
     description text,
     cover_image_url text,
@@ -41,10 +37,6 @@ create table if not exists products (
     id uuid primary key default gen_random_uuid(),
     catalogue_id uuid references catalogues(id) on delete set null,
     name text not null,
-    title text,
-    product_code text unique,
-    category text,
-    thumbnail_url text,
     slug text unique not null,
     description text,
     price_inr numeric(12,2),
@@ -119,8 +111,3 @@ create index if not exists idx_catalogues_featured on catalogues(is_featured);
 create index if not exists idx_banners_active on banners(is_active);
 create index if not exists idx_homepage_sections_order on homepage_sections(order_index);
 create index if not exists idx_inquiries_created_at on inquiries(created_at desc);
-
-
-create or replace view wishlist_view as
-select w.user_id,p.id as product_id,p.slug,p.title,p.name,p.thumbnail_url,p.hero_image_url
-from wishlist w join products p on p.id=w.product_id;

@@ -1,1 +1,7 @@
-{% extends 'base.html' %}{% block content %}<section class="container page"><h1>Wishlist</h1><div class="card-actions"><button data-share="{{request.url}}">Share Wishlist</button></div><div class="grid-3">{% for i in items %}<article class="card"><h3>{{ i.title or i.name }}</h3></article>{% else %}<div class="card">No saved designs yet.</div>{% endfor %}</div></section><dialog id="login-modal"><p>Please login to save wishlist.</p><a class="btn" href="{{ url_for('web.login') }}">Login with Google</a></dialog>{% endblock %}
+{% extends 'base.html' %}
+{% block content %}
+<section class="container page">
+  <h1>wishlist</h1>
+  <div class="card">Luxury content for wishlist.</div>
+</section>
+{% endblock %}
